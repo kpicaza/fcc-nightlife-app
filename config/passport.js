@@ -54,11 +54,11 @@ export default function (passport) {
             done(null, user);
           });
         })
-        .catch(function (e) {
+        .catch(function () {
           emitLoginFailedEvent();
           done(null, false);
         });
     }
   ));
 
-};
+}

@@ -31,7 +31,7 @@ function Store(db) {
     collection = db.collection('users');
   };
 
-  var find = function (criteria, limit) {
+  var find = function (criteria) {
     return new Promise(function (resolve, reject) {
       collection
         .find(criteria)
@@ -74,7 +74,7 @@ function Store(db) {
         username: user.username(),
         email: user.email(),
         password: user.password()
-      }, function (err, data) {
+      }, function (err) {
         if (err) {
           reject(err);
         }
