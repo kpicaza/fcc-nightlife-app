@@ -1,0 +1,56 @@
+
+html, body {
+	height: 100%;
+}
+
+.navbar-toggler-right {
+	float: right !important;
+	clear: both;
+}
+
+#wrap {
+	min-height: 100%;
+	margin-bottom: 20px;
+}
+
+#main {
+	overflow:auto;
+	padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+
+.breadcrumb {
+	margin-top: 15px;
+}
+
+.btn, .clickable {
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
+
+.margin-left-5 {
+	margin-left: 5px;
+}
+
+.margin-left-10 {
+	margin-left: 10px;
+}
+
+#title-text {
+	padding-right: 20px;
+	border-right: 1px solid white;
+}
+
+#poll-chart {
+	height: 10px;
+}
+
+.footer {
+	position: relative;
+	margin-top: -150px; /* negative value of footer height */
+	height: 150px;
+	clear:both;
+	padding-top:20px;
+}

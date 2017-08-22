@@ -1,0 +1,50 @@
+{
+  "name": "fcc-nightlife-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "npm run build && node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpicaza/fcc-nightlife-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kpicaza/fcc-nightlife-app/issues"
+  },
+  "homepage": "https://github.com/kpicaza/fcc-nightlife-app#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "blueimp-md5": "^2.8.0",
+    "body-parser": "^1.17.2",
+    "bootstrap": "4.0.0-alpha.6",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "events": "^1.1.1",
+    "express": "^4.15.4",
+    "express-flash": "0.0.2",
+    "express-session": "^1.15.5",
+    "express-validator": "^3.2.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "mongodb": "^2.2.31",
+    "morgan": "^1.8.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-rc.3",
+    "rsvp": "^4.0.1",
+    "uuid5": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "rimraf": "^2.6.1"
+  }
+}

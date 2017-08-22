@@ -1,0 +1,31 @@
+- var siteName = 'Fcc Night Life App';
+
+html
+    head
+        title My Site - #{siteName}
+        link(rel="stylesheet" href="/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/font-awesome/css/font-awesome.min.css")
+        link(rel="stylesheet" href="/css/main.css")
+    body
+        block navbar
+            if user
+                include ./menu/navbar
+            else
+                include ./menu/navbar-anon
+
+        div(id="wrap")
+            div(id="main" class="container")
+                block breadcrumb
+                block content
+        block foot
+            footer(class="footer bg-faded")
+                div(class="container")
+                    #footer
+                        p some footer content
+
+        block scripts
+            script(type="text/javascript" src="/jquery/jquery.min.js")
+            script(type="text/javascript" src="/tether/js/tether.min.js")
+            script(type="text/javascript" src="/bootstrap/js/bootstrap.min.js")
+            script(type="text/javascript" src="/js/common/ajax-functions.js")
+            script(type="text/javascript" src="/js/common/debounce.js")
