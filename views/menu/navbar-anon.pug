@@ -1,18 +1,21 @@
-nav(class="navbar navbar-inverse navbar-toggleable-md navbar-light bg-faded bg-danger")
-    button(class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
-        span(class="navbar-toggler-icon")
-    div(class="container")
+header(class="mdl-layout__header")
+    div(role="button" class="mdl-layout__drawer-button mdl-layout--small-screen-only")
+        i(class="font-size-header material-icons") 
 
-        a(class="navbar-brand" href="/")
-            i(class="fa fa-th-large")= ' '
-            strong(id="title-text" class="margin-left-10")= siteName
+    div(class="mdl-layout__header-row")
 
-        div(class="collapse navbar-collapse" id="navbarSupportedContent")
-            ul(class="navbar-nav mr-auto")
-                li(class="nav-item active")
-                    a(class="nav-link" href="/") Home #[span(class="sr-only") (current)]
-            ul(class="navbar-nav mr-right")
-                li(class="nav-item")
-                    a(class="nav-link" href="/login") Sign in
-                li(class="nav-item")
-                    a(class="nav-link" href="/register") Sign up
+        span(class="mdl-layout-title")= siteName
+
+        div(class="mdl-layout-spacer")
+
+        nav(class="mdl-navigation mdl-layout--large-screen-only")
+            a(class="mdl-navigation__link" href="/") Home #[span(class="sr-only") (current)]
+            a(class="mdl-navigation__link" href="/login") Sign in
+            a(class="mdl-navigation__link" href="/register") Sign up
+
+div(class="mdl-layout__drawer")
+    span(class="mdl-layout-title")= siteName
+    nav(class="mdl-navigation")
+        a(class="mdl-navigation__link" href="/") Home #[span(class="sr-only") (current)]
+        a(class="mdl-navigation__link" href="/login") Sign in
+        a(class="mdl-navigation__link" href="/register") Sign up

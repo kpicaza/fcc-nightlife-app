@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+    h1 Plan your night
+    hr
+
+    form
+        div(class="input-group input-group-lg")
+            span(class="input-group-btn")
+                button(type="submit" class="btn btn-primary clickable" id="make-search-button")
+                    i(class="material-icons") search
+            input(id="search" name="search" type="text" class="form-control" placeholder="Add your Location" aria-describedby="sizing-addon1")
+    hr
+
+    div(id="search-result")
+        div(class="text-center lead")
+            div(id="loading-results" class="mdl-spinner mdl-js-spinner is-active hidden")
+        each plan, key in plans
+            include ./plan-item
+
+        - var paginationVisible = ''
+        if !hasPagination
+            - paginationVisible = ' hidden'
+
+        div(class="text-center" + paginationVisible)
+            button(id="show-more" class="btm btn-secondary btn-lg")
+                i(class="fa fa-chevron-down")
+            div(id="loading-pagination" class="mdl-spinner mdl-js-spinner is-active hidden")
+
+
+block append scripts
+    script(type="text/javascript" src="/js/plan/make-search.client.js")

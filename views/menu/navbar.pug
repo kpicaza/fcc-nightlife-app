@@ -1,20 +1,24 @@
-nav(class="navbar navbar-inverse navbar-toggleable-md navbar-light bg-faded bg-danger")
-    button(class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
-        span(class="navbar-toggler-icon")
-    div(class="container")
-        a(class="navbar-brand" href="/")
-            i(class="fa fa-th-large")= ' '
-            strong(id="title-text" class="margin-left-10")= siteName
+header(class="mdl-layout__header")
+    div(role="button" class="mdl-layout__drawer-button mdl-layout--small-screen-only")
+        i(class="font-size-header material-icons") 
 
-        div(class="collapse navbar-collapse" id="navbarSupportedContent")
-            ul(class="navbar-nav mr-auto")
-                li(class="nav-item active")
-                    a(class="nav-link" href="/") Home #[span(class="sr-only") (current)]
-            ul(class="navbar-nav mr-right")
-                li(class="nav-item hidden-md-down")
-                    img(src="https://www.gravatar.com/avatar/" + user.hashedEmail + "?s=40")
-                li(class="nav-item")
-                    a(class="nav-link" href="#")
-                        | #{user.username()}
-                li(class="nav-item")
-                    a(class="nav-link" href="/logout") Log out
+    div(class="mdl-layout__header-row")
+
+        span(class="mdl-layout-title")= siteName
+
+        div(class="mdl-layout-spacer")
+
+        nav(class="mdl-navigation mdl-layout--large-screen-only")
+            a(class="mdl-navigation__link" href="/") Home #[span(class="sr-only") (current)]
+            a(class="mdl-navigation__link" href="#")
+                | #{user.username()}
+            a(class="mdl-navigation__link" href="#")
+                img(src="https://www.gravatar.com/avatar/" + user.hashedEmail + "?s=40")
+
+div(class="mdl-layout__drawer")
+    span(class="mdl-layout-title")= siteName
+    nav(class="mdl-navigation")
+        a(class="mdl-navigation__link" href="/") Home #[span(class="sr-only") (current)]
+        a(class="mdl-navigation__link" href="#")
+            | #{user.username()}
+

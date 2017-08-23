@@ -1,0 +1,81 @@
+- var venue = plan.venue();
+
+div(class="plan-card-wide mdl-card mdl-shadow--2dp")
+    - var textColor = ' text-white'
+    if 0 === venue.image_url.length
+        div(class="mdl-card__title" style="height: 176px;")
+            h2(class="mdl-card__title-text")= venue.name
+        - textColor = ''
+    else
+        div(class="mdl-card__title" style="height: 176px;background: url('" + venue.image_url + "') center / cover;")
+            h2(class="mdl-card__title-text" + textColor)= venue.name
+
+    div(class="mdl-card__supporting-text wide")
+        p(class="lead")
+            span= venue.name + ': '
+            each tag, index in venue.categories
+                strong(class="text-muted")= tag.title
+                if (index + 1) !== venue.categories.length
+                    | ,#{' '}
+        div(id=venue.id + "-detail" class="collapse")
+            hr
+            div(class="row")
+                div(class="col-md-6")
+                    ul
+                        if 0 < venue.phone.length
+                            li(class="mdl-list__item")
+                                a(href="tel:" + venue.phone)
+                                    i(class="fa fa-phone")
+                                    span(class="margin-left-10")= ' ' + venue.display_phone
+                        if venue.location.address1
+                            li(class="mdl-list__item")
+                                a(href="#")
+                                    i(class="fa fa-map-marker")
+                                    span(class="margin-left-10")= ' ' + venue.location.address1
+                        li(class="mdl-list__item")
+                            - var reviewCount = 0;
+                            if venue.review_count
+                                - reviewCount = venue.review_count
+                            a(href=venue.url target="_blank")
+                                i(class="fa fa-comments")
+                                span(class="margin-left-10")= ' ' + reviewCount
+                div(class="col-md-6")
+                    ul
+                        li(class="mdl-list__item")
+                            span Rating:#{' '}
+                                - var i = 1;
+                                while i < 6
+                                    - var icon = '-o'
+                                    if venue.rating >= i
+                                        - icon = ''
+                                    else if venue.rating < i && venue.rating > (i - 1)
+                                        - icon = '-half-o'
+                                    i(class="text-warning fa fa-star" + icon)
+                                    - i++
+                        li(class="mdl-list__item")
+                            span Price: #{venue.price}
+                        li(class="mdl-list__item")
+                            if venue.is_closed
+                                span Closed:#{' '}
+                                    i(class="fa fa-circle text-danger")
+                            else
+                                span Open:#{' '}
+                                    i(class="fa fa-circle text-success")
+
+    div(class="mdl-card__actions mdl-card--border text-left")
+        div(class="row")
+            div(class="col-md-12 text-right")
+                a(class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect") I'm go!!
+                button(class="show-detail mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" data-toggle="collapse" data-target="#" + venue.id + "-detail" aria-expanded="false" aria-controls=venue.id + "-detail") More info
+                button(class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect")
+                    span(class="assistants")= plan.assistants().length + ' '
+                    | Assistants
+
+    div(class="mdl-card__menu")
+        button(id="info-plan-" + venue.id class="mdl-button text-js-white mdl-button--icon" + textColor)
+            i(class="material-icons") share
+
+        ul(class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="info-plan-" + venue.id)
+            li(class="text-center")
+                a(href="https://twitter.com/intent/tweet?text=I'm go to " + venue.name + " tonight!! " + siteUrl, target="_blank")
+                    i(class="fa fa-2x fa-twitter")

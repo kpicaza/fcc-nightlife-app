@@ -1,14 +1,12 @@
 'use strict';
 
-import LocalStrategy  from 'passport-local';
-import container from './container';
+var LocalStrategy = require('passport-local').Strategy;
+var userRepository = require('./container').UserRepository();
+var emitter = require('./container').EventEmitter();
 
-export default function (passport) {
+module.exports = function (passport) {
 
-  const userRepository = container.UserRepository();
-  const emitter = container.EventEmitter();
-
-  let emitLoginFailedEvent = function () {
+  var emitLoginFailedEvent = function () {
     emitter.emit('LoginWasFailed', {
       name: 'LoginWasFailed',
       data: 'Invalid username or password.',
@@ -16,7 +14,7 @@ export default function (passport) {
     });
   };
 
-  let emitUserLoggedInEvent = function (user) {
+  var emitUserLoggedInEvent = function (user) {
     emitter.emit('UserLoggedIn', {
       name: 'UserLoggedIn',
       data: {
@@ -54,11 +52,11 @@ export default function (passport) {
             done(null, user);
           });
         })
-        .catch(function () {
+        .catch(function (e) {
           emitLoginFailedEvent();
           done(null, false);
         });
     }
   ));
 
-}
+};

@@ -1,24 +1,51 @@
 'use strict';
 
-import EventEmitter from 'events';
-import Login from '../src/user/application/action/login-action';
-import LoginForm from '../src/user/application/action/login-form-action';
-import RegisterForm from '../src/user/application/action/register-form-action';
-import CheckUsername from '../src/user/application/action/check-username';
-import CheckEmail from '../src/user/application/action/check-email';
-import CheckPassword from '../src/user/application/action/check-password';
-import CreateAnUser from '../src/user/application/action/create-user-action';
-import RegisterValidator from '../src/user/application/middleware/register-validator';
-import UserRepository from '../src/user/domain/model/repository';
-import mongoUserStore from '../src/user/infrastructure/db/mongo-user-store';
+var EventEmitter = require('events');
+var Login = require('../src/user/application/action/login-action');
+var LoginForm = require('../src/user/application/action/login-form-action');
+var RegisterForm = require('../src/user/application/action/register-form-action');
+var CheckUsername = require('../src/user/application/action/check-username');
+var CheckEmail = require('../src/user/application/action/check-email');
+var CheckPassword = require('../src/user/application/action/check-password');
+var CreateAnUser = require('../src/user/application/action/create-user-action');
+var RegisterValidator = require('../src/user/application/middleware/register-validator');
+var UserRepository = require('../src/user/domain/model/repository');
+var mongoUserStore = require('../src/user/infrastructure/db/mongo-user-store');
+var SearchForm = require("../src/plan/application/action/search-form");
+var MakeSearch = require("../src/plan/application/action/make-search");
+var PlanRepository = require("../src/plan/domain/model/plan-repository");
+var VenueRepository = require("../src/plan/domain/model/venue-repository");
+var mongoPlanStore = require("../src/plan/infrastructure/mongo/plan-store");
+var venueStore = require("../src/plan/infrastructure/yelp/venue-store");
 
-
-const container = {
+var container = {
 
   EventEmitter: function () {
     const emitter = new EventEmitter();
 
     return emitter;
+  },
+
+  // Plan Dependencies
+
+  VenueRepository: function () {
+    return new VenueRepository(venueStore, this.EventEmitter());
+  },
+
+  PlanRepository: function () {
+    return new PlanRepository(mongoPlanStore, this.EventEmitter(), this.VenueRepository());
+  },
+
+  SearchPlanForm: function () {
+    const searchForm = new SearchForm();
+
+    return searchForm.action;
+  },
+
+  MakeSearch: function () {
+    const makeSearch = new MakeSearch(this.PlanRepository());
+
+    return makeSearch.action;
   },
 
   // User Dependencies.
@@ -79,9 +106,9 @@ const container = {
     );
 
     return createAnUser.action;
-  },
+  }
 
 
 };
 
-export default container;
+module.exports = container;

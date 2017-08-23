@@ -2,30 +2,38 @@
 
 html
     head
-        title My Site - #{siteName}
+        title #{siteName}
         link(rel="stylesheet" href="/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/material/material.min.css")
         link(rel="stylesheet" href="/font-awesome/css/font-awesome.min.css")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
         link(rel="stylesheet" href="/css/main.css")
     body
-        block navbar
-            if user
-                include ./menu/navbar
-            else
-                include ./menu/navbar-anon
+        div(class="mdl-layout mdl-js-layout mdl-layout--fixed-header")
+            block navbar
+                if user
+                    include ./menu/navbar
+                else
+                    include ./menu/navbar-anon
 
-        div(id="wrap")
-            div(id="main" class="container")
-                block breadcrumb
-                block content
-        block foot
-            footer(class="footer bg-faded")
-                div(class="container")
-                    #footer
-                        p some footer content
+            main(class="mdl-layout__content")
+
+                div(class="page-content container")
+                    div(class="row")
+                        div(class="col-md-10 offset-md-1 col-lg-8 offset-lg-2")
+                            block breadcrumb
+                            block content
+
+            block foot
+                footer(class="footer bg-faded")
+                    div(class="container")
+                        #footer
+                            p some footer content
 
         block scripts
             script(type="text/javascript" src="/jquery/jquery.min.js")
             script(type="text/javascript" src="/tether/js/tether.min.js")
             script(type="text/javascript" src="/bootstrap/js/bootstrap.min.js")
+            script(type="text/javascript" src="/material/material.min.js")
             script(type="text/javascript" src="/js/common/ajax-functions.js")
             script(type="text/javascript" src="/js/common/debounce.js")
