@@ -12,19 +12,40 @@ var app = express();
 require('dotenv').load();
 require('./config/passport')(passport);
 
+// Assets
+
 app.use(express.static(path.join(__dirname, "public")));
 app.set('view engine', 'pug');
 app.use('/jquery', express.static(path.join(__dirname, "node_modules/jquery/dist")));
 app.use('/md5', express.static(path.join(__dirname, "node_modules/blueimp-md5/js")));
 app.use('/bootstrap', express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
 app.use('/tether', express.static(path.join(__dirname, "node_modules/tether/dist")));
-app.use('/font-awesome/css', express.static(path.join(__dirname, "node_modules/font-awesome/css")));
-app.use('/font-awesome/fonts', express.static(path.join(__dirname, "node_modules/font-awesome/fonts")));
-app.use('/material/material.min.css', express.static(path.join(__dirname, "node_modules/material-design-lite/material.min.css")));
-app.use('/material/material.min.js', express.static(path.join(__dirname, "node_modules/material-design-lite/material.min.js")));
+app.use(
+  '/font-awesome/css',
+  express.static(path.join(__dirname, "node_modules/font-awesome/css")));
+app.use(
+  '/font-awesome/fonts',
+  express.static(path.join(__dirname, "node_modules/font-awesome/fonts")));
+app.use(
+  '/material/material.min.css',
+  express.static(path.join(__dirname, "node_modules/material-design-lite/material.min.css")));
+app.use(
+  '/material/material.min.js',
+  express.static(path.join(__dirname, "node_modules/material-design-lite/material.min.js")));
+app.use(
+  '/dialog-polyfill/dialog-polyfill.css',
+  express.static(path.join(__dirname, "node_modules/dialog-polyfill/dialog-polyfill.css")));
+app.use(
+  '/dialog-polyfill/dialog-polyfill.js',
+  express.static(path.join(__dirname, "node_modules/dialog-polyfill/dialog-polyfill.js")));
+app.use(
+  '/slick-carousel',
+  express.static(path.join(__dirname, "node_modules/slick-carousel/slick")));
 app.use('/js/user', express.static(path.join(__dirname, "src/user/infrastructure/client")));
 app.use('/js/plan', express.static(path.join(__dirname, "src/plan/infrastructure/client")));
 app.use('/js/common', express.static(path.join(__dirname, "src/util")));
+
+// Backend
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator({}));

@@ -43,7 +43,6 @@ module.exports = function (app, passport) {
       res.redirect('/login');
     });
 
-
   // api routes
 
   app.route('/api/users/usernames')
@@ -54,6 +53,9 @@ module.exports = function (app, passport) {
 
   app.route('/api/users/passwords')
     .post(container.CheckPassword());
+
+  app.route('/api/venues/:id')
+    .get(container.ObtainVenueInfo());
 
   app.route('/api/plans/:id/assistants')
     .post(isLoggedIn, container.AssistToPlan())

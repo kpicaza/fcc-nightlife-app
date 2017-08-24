@@ -11,6 +11,16 @@ h1 {
 	font-size: 48px;
 }
 
+.dialog-full-width {
+	width: 90%;
+	max-width: 920px;
+}
+
+.slick-list {
+	height: auto !important;
+	max-height: 450px;
+}
+
 .breadcrumb {
 	margin-top: 15px;
 }

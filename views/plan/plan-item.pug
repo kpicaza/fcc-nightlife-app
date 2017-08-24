@@ -87,5 +87,8 @@ div(class="plan-card-wide mdl-card mdl-shadow--2dp")
                 a(href="https://twitter.com/intent/tweet?text=I'm go to " + venue.name + " tonight!! " + siteUrl, target="_blank")
                     i(class="fa fa-2x fa-twitter")
 
-        button(class="mdl-button text-js-white mdl-button--icon" + textColor)
-            i(class="material-icons") photo_library
+        if 0 < venue.image_url.length
+            button(data-venue-id=venue.id class="show-gallery mdl-button text-js-white mdl-button--icon" + textColor)
+                i(class="material-icons") photo_library
+
+            include ./plan-item-gallery

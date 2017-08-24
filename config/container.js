@@ -15,6 +15,7 @@ var SearchForm = require("../src/plan/application/action/search-form");
 var MakeSearch = require("../src/plan/application/action/make-search");
 var AssistToPlan = require("../src/plan/application/action/assist-to-plan");
 var CantAssistToPlan = require("../src/plan/application/action/cant-assist-to-plan");
+var ObtainVenueInfo = require("../src/plan/application/action/obtain-venue-info");
 var PlanRepository = require("../src/plan/domain/model/plan-repository");
 var VenueRepository = require("../src/plan/domain/model/venue-repository");
 var mongoPlanStore = require("../src/plan/infrastructure/mongo/plan-store");
@@ -39,7 +40,7 @@ var container = {
   },
 
   SearchPlanForm: function () {
-    const searchForm = new SearchForm();
+    const searchForm = new SearchForm(this.PlanRepository());
 
     return searchForm.action;
   },
@@ -60,6 +61,12 @@ var container = {
     const cantAssistToPlan = new CantAssistToPlan(this.PlanRepository());
 
     return cantAssistToPlan.action;
+  },
+
+  ObtainVenueInfo: function () {
+    const obtainVenueInfo = new ObtainVenueInfo(this.VenueRepository());
+
+    return obtainVenueInfo.action;
   },
 
   // User Dependencies.

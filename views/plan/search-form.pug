@@ -10,14 +10,18 @@ block content
             span(class="input-group-btn")
                 button(type="submit" class="btn btn-primary clickable" id="make-search-button")
                     i(class="material-icons") search
-            input(id="search" name="search" type="text" class="form-control" placeholder="Add your Location" aria-describedby="sizing-addon1")
+            input(id="search" name="search" type="text" class="form-control" placeholder="Add your Location" aria-describedby="sizing-addon1" value=criteria)
+
     hr
 
     div(id="search-result")
         div(class="text-center lead")
             div(id="loading-results" class="mdl-spinner mdl-js-spinner is-active hidden")
 
-            div(id="results-info" class="hidden lead") Showing
+            - var hiddenInfoClass = '';
+            if 0 === criteria.length
+                - hiddenInfoClass = ' hidden'
+            div(id="results-info" class="lead" + hiddenInfoClass) Showing
                 strong(id="number-results" class="text-primary")= ' ' + plans.showing + ' '
                 | results of
                 strong(id="total-results" class="text-primary")= ' ' + plans.total
@@ -36,6 +40,8 @@ block content
 
 
 block append scripts
+    script(type="text/javascript" src="/dialog-polyfill/dialog-polyfill.js")
     script(type="text/javascript" src="/js/plan/make-search.client.js")
+    script(type="text/javascript" src="/js/plan/plan-gallery.client.js")
     if user
         script(type="text/javascript" src="/js/plan/assist-to-plan.client.js")

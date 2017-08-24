@@ -10,8 +10,7 @@ header(class="mdl-layout__header")
 
         nav(class="mdl-navigation mdl-layout--large-screen-only")
             a(class="mdl-navigation__link" href="/") Home #[span(class="sr-only") (current)]
-            a(class="mdl-navigation__link" href="#")
-                | #{user.username()}
+            a(class="mdl-navigation__link" href="/logout") Log out
             a(class="mdl-navigation__link" href="#")
                 img(src="https://www.gravatar.com/avatar/" + user.hashedEmail + "?s=40")
 
