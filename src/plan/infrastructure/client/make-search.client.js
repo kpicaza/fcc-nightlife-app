@@ -77,6 +77,10 @@
     });
   };
 
+  ajaxFunctions.ready(function () {
+    reload();
+  });
+
   searchButton.bind('click', function (e) {
     e.preventDefault();
 
