@@ -4,7 +4,7 @@ var uuid5 = require('uuid5');
 function Plan(id, venue, assistants, createdAt) {
 
   assistants = assistants || [];
-  createdAt = new Date(createdAt) || new Date();
+  createdAt = createdAt instanceof Date ? createdAt : new Date();
   id = id || uuid5(createdAt.toString());
 
   this.id = function() {

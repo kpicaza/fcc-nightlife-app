@@ -3,7 +3,7 @@ function SearchForm(repository) {
 
   this.action = function(req, res) {
     if (req.session.lastSearch) {
-      repository.currentPlans(req.session.lastSearch.search, req.session.lastSearch.page)
+      repository.currentPlans(req.session.lastSearch.search, 1)
         .then(function(plans) {
           res.render('plan/search-form', {
             plans: plans,
