@@ -1,5 +1,4 @@
-
-const LIMIT = parseInt(process.env.PAGE_LIMIT);
+'use strict';
 
 function MakeSearch(repository) {
 

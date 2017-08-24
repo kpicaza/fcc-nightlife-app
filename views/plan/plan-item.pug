@@ -65,9 +65,16 @@ div(class="plan-card-wide mdl-card mdl-shadow--2dp")
     div(class="mdl-card__actions mdl-card--border text-left")
         div(class="row")
             div(class="col-md-12 text-right")
-                a(class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect") I'm go!!
-                button(class="show-detail mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" data-toggle="collapse" data-target="#" + venue.id + "-detail" aria-expanded="false" aria-controls=venue.id + "-detail") More info
+                if user
+                    if -1 < plan.assistants().indexOf(user.id())
+                        button(class="cant-assist mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" data-plan-id=plan.id() data-venue-id=venue.id) ;-C Finally, i can't
+                    else
+                        button(class="assist-to-plan mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" data-plan-id=plan.id() data-venue-id=venue.id) I'm go!!
+                button(class="show-detail mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" data-toggle="collapse" data-target="#" + venue.id + "-detail" aria-expanded="false" aria-controls=venue.id + "-detail")
+                    //i(class="material-icons") info_outline
+                    | More info
                 button(class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect")
+                    div(class="material-icons") people
                     span(class="assistants")= plan.assistants().length + ' '
                     | Assistants
 
@@ -79,3 +86,6 @@ div(class="plan-card-wide mdl-card mdl-shadow--2dp")
             li(class="text-center")
                 a(href="https://twitter.com/intent/tweet?text=I'm go to " + venue.name + " tonight!! " + siteUrl, target="_blank")
                     i(class="fa fa-2x fa-twitter")
+
+        button(class="mdl-button text-js-white mdl-button--icon" + textColor)
+            i(class="material-icons") photo_library

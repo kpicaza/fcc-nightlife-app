@@ -21,6 +21,7 @@
     loadingPagination = $('#loading-pagination');
     bindPagination();
     bindDetail();
+    body.trigger('SearchWasMade');
   };
 
   var bindDetail = function () {
@@ -76,7 +77,6 @@
     e.preventDefault();
 
     loading.removeClass('hidden');
-
 
     ajaxFunctions.ajaxRequest('POST', apiUrl, {
       search: searchInput.val(),

@@ -53,7 +53,7 @@ function returnPromise(options) {
   return new Promise(function (resolve, reject) {
     request(options, function (error, response, body) {
       if (error) {
-        reject(new Error(error));
+        return reject(new Error(error));
       }
 
       resolve(JSON.parse(body));

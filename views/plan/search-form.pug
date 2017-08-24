@@ -1,7 +1,8 @@
 extends ../layout
 
 block content
-    h1 Plan your night
+    div(class="text-center")
+        h1 Plan your night
     hr
 
     form
@@ -30,3 +31,5 @@ block content
 
 block append scripts
     script(type="text/javascript" src="/js/plan/make-search.client.js")
+    if user
+        script(type="text/javascript" src="/js/plan/assist-to-plan.client.js")

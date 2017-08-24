@@ -13,6 +13,7 @@ var UserRepository = require('../src/user/domain/model/repository');
 var mongoUserStore = require('../src/user/infrastructure/db/mongo-user-store');
 var SearchForm = require("../src/plan/application/action/search-form");
 var MakeSearch = require("../src/plan/application/action/make-search");
+var AssistToPlan = require("../src/plan/application/action/assist-to-plan");
 var PlanRepository = require("../src/plan/domain/model/plan-repository");
 var VenueRepository = require("../src/plan/domain/model/venue-repository");
 var mongoPlanStore = require("../src/plan/infrastructure/mongo/plan-store");
@@ -46,6 +47,12 @@ var container = {
     const makeSearch = new MakeSearch(this.PlanRepository());
 
     return makeSearch.action;
+  },
+
+  AssistToPlan: function () {
+    const assistToPlan = new AssistToPlan(this.PlanRepository());
+
+    return assistToPlan.action;
   },
 
   // User Dependencies.

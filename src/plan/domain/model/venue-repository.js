@@ -12,6 +12,10 @@ function VenueRepository(gateway, emitter) {
     }, 'search')
   };
 
+  this.byId = function (id) {
+    return gateway(id, 'findById');
+  };
+
 }
 
 module.exports = VenueRepository;

@@ -55,4 +55,7 @@ module.exports = function (app, passport) {
   app.route('/api/users/passwords')
     .post(container.CheckPassword());
 
+  app.route('/api/plans/:id/assistants')
+    .post(isLoggedIn, container.AssistToPlan());
+
 };
