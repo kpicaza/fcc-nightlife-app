@@ -30,7 +30,6 @@ function Store(db) {
   };
 
   var serializePlan = function (plan) {
-
     return {
       id: plan.id(),
       venue: plan.venue(),
@@ -79,10 +78,12 @@ function Store(db) {
 
   this.update = function (plan) {
     return new Promise(function (resolve, reject) {
-
       var aPlan = serializePlan(plan);
 
-      collection.update({id: plan.id()}, aPlan, function (err) {
+      collection.update({
+        id: plan.id(),
+        createdAt: plan.from
+      }, aPlan, function (err) {
         if (err) {
           return reject(err);
         }

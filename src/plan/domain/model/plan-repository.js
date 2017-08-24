@@ -50,6 +50,7 @@ function PlanRepository(gateway, emitter, venueRepository) {
 
         Promise.all(plans).then(function (plans) {
           plans.total = venues.total;
+          plans.showing = plans.length + (page - 1) * 6;
           resolve(plans);
         });
       });
@@ -77,8 +78,10 @@ function PlanRepository(gateway, emitter, venueRepository) {
       vm.byId(id)
         .then(function (plan) {
           plan.addAssistant(userId);
+          plan.from = interval();
 
           gateway(plan, 'update').then(function () {
+            console.log(id, plan);
             resolve(plan);
           }).catch(function (e) {
             reject(e);

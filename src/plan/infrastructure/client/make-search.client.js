@@ -13,12 +13,15 @@
   var showMoreButton = $('#show-more');
   var loadingPagination = $('#loading-pagination');
   var showDetailButton = $('.show-detail');
+  var resultsInfo = $('#results-info');
 
   var reload = function () {
     componentHandler.upgradeAllRegistered();
     showMoreButton = $('#show-more');
     showDetailButton = $('.show-detail');
     loadingPagination = $('#loading-pagination');
+    resultsInfo = $('#results-info');
+    resultsInfo.removeClass('hidden');
     bindPagination();
     bindDetail();
     body.trigger('SearchWasMade');
@@ -64,6 +67,7 @@
         page: page
       }, function (data) {
         loadingPagination.remove();
+        resultsInfo.replaceWith($(data).find('#results-info'));
         searchResultDiv.append($(data).find('#search-result').html());
         reload();
         scrollTo();
@@ -76,6 +80,7 @@
   searchButton.bind('click', function (e) {
     e.preventDefault();
 
+    page = 1;
     loading.removeClass('hidden');
 
     ajaxFunctions.ajaxRequest('POST', apiUrl, {
