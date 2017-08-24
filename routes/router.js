@@ -56,6 +56,7 @@ module.exports = function (app, passport) {
     .post(container.CheckPassword());
 
   app.route('/api/plans/:id/assistants')
-    .post(isLoggedIn, container.AssistToPlan());
+    .post(isLoggedIn, container.AssistToPlan())
+    .delete(isLoggedIn, container.CantAssistToPlan());
 
 };

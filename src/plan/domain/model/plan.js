@@ -27,6 +27,12 @@ function Plan(id, venue, assistants, createdAt) {
     assistants.push(userId);
   };
 
+  this.removeAssistant = function (userId) {
+    var pos = assistants.indexOf(userId);
+
+    assistants.splice(pos, 1);
+  };
+
   this.createdAt = function() {
     return createdAt.toISOString();
   };

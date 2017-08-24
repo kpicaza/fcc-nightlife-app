@@ -81,7 +81,6 @@ function PlanRepository(gateway, emitter, venueRepository) {
           plan.from = interval();
 
           gateway(plan, 'update').then(function () {
-            console.log(id, plan);
             resolve(plan);
           }).catch(function (e) {
             reject(e);
@@ -103,6 +102,23 @@ function PlanRepository(gateway, emitter, venueRepository) {
     });
 
   };
+
+  this.cantAssist = function (id, venueId, userId) {
+    return new Promise(function (resolve, reject) {
+      vm.byId(id)
+        .then(function (plan) {
+          plan.removeAssistant(userId);
+          plan.from = interval();
+
+          gateway(plan, 'update').then(function () {
+            resolve(plan);
+          }).catch(function (e) {
+            reject(e);
+          });
+        });
+    });
+
+  }
 
 }
 
