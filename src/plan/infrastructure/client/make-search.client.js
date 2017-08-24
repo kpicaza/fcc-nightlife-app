@@ -78,7 +78,8 @@
   };
 
   ajaxFunctions.ready(function () {
-    reload();
+    bindPagination();
+    bindDetail();
   });
 
   searchButton.bind('click', function (e) {
