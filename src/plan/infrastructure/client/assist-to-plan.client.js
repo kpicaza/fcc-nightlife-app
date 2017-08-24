@@ -70,6 +70,10 @@
 
   };
 
+  ajaxFunctions.ready(function () {
+    bindActions();
+  });
+
   body.bind('SearchWasMade', function () {
     bindActions();
   });
